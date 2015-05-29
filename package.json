@@ -1,0 +1,19 @@
+{
+  "name": "therm",
+  "version": "1.0.0",
+  "description": "therm for node",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ti-webdev/node-therm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ti-webdev/node-therm/issues"
+  },
+  "homepage": "https://github.com/Ti-webdev/node-therm#readme",
+  "bin": {
+    "therm": "./bin/therm.js"
+  },
+  "author": "Ti",
+  "license": "BSD-2-Clause"
+}
