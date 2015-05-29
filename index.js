@@ -9,20 +9,21 @@ var readTemp = function(file, callback){
     }
 
     // Read data from file (using fast node ASCII encoding).
-    var data = buffer.toString('ascii').split(' ') // Split by space
+    var str = buffer.toString('ascii')
 
-    if (0 !== data[11].indexOf('YES\n')) {
+    var data = str.split(' ') // Split by space
+
+    var isAvailable = 0 === data[11].indexOf('YES\n')
+    if (!isAvailable) {
       callback(new Error('The sensor is not available. Raw data: '+data))
     }
 
     // Extract temperature from string and divide by 1000 to give celsius
-    var temp  = parseFloat(data[data.length-1].split('=')[1])/1000.0
-
-    // Round to one decimal place
-    temp = Math.round(temp * 100) / 100
+    var temperature = parseFloat(data[data.length-1].split('=')[1])
+    var celsius  = temperature/1000.0
 
     // Execute call back with data
-    callback(null, {temp: temp, raw: buffer.toString('ascii')})
+    callback(null, {celsius: celsius, temperature: temperature, raw: str})
   })
 }
 
