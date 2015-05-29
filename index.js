@@ -71,10 +71,10 @@ var worker = function(file, timeout, dataCb) {
       var startTime = (new Date).getTime()
       promise = stopPromise(readTempPromised(file))
       promise.then(function(data) {
-         if (enabled) dataCb(null, data)
+         if (enabled) return dataCb(null, data)
       })
       .catch(function(err) {
-         if (enabled) dataCb(err)
+         if (enabled) return dataCb(err)
       })
       .then(function() {
          var timeDelta = (new Date).getTime() - startTime
